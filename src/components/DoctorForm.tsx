@@ -1,29 +1,28 @@
 import React from "react";
-import {Doctor, DoctorAction} from "../Types/Types";
+import {Doctor} from "../Types/Types";
 import {Box, Button, TextField} from "@mui/material";
 
 type DoctorFormProps = {
-	doctor: Doctor,
-	setState: React.Dispatch<DoctorAction>
+	name: Doctor["name"],
+	phone: Doctor["telephone"],
+	rating: Doctor["rating"],
+	setName:  React.Dispatch<React.SetStateAction<Doctor["name"]>>,
+	setPhone: React.Dispatch<React.SetStateAction<Doctor["telephone"]>>,
+	setRating: React.Dispatch<React.SetStateAction<Doctor["rating"]>>
 }
 
-export function DoctorForm({doctor, setState}: DoctorFormProps) {
-	const {name, telephone: phone, rating} = doctor;
+export function DoctorForm(props: DoctorFormProps) {
+
+	const {name, setName, phone, setPhone, rating, setRating} = props;
 
 	function handleNameChange(event: React.ChangeEvent<HTMLInputElement>) {
 		const newName: Doctor["name"] = event.target.value;
-		setState({
-			type: "NAME",
-			payload: newName
-		})
+		setName(newName);
 	}
 
 	function handlePhoneChange(event: React.ChangeEvent<HTMLInputElement>) {
 		const newPhone: Doctor["telephone"] = event.target.value;
-		setState({
-			type: "PHONE",
-			payload: newPhone
-		})
+		setPhone(newPhone);
 	}
 
 	function handleRatingChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -31,11 +30,7 @@ export function DoctorForm({doctor, setState}: DoctorFormProps) {
 		if (isNaN(newRating) || newRating > 5 || newRating < 0) {
 			return;
 		}
-
-		setState({
-			type: "RATING",
-			payload: newRating
-		})
+		setRating(newRating);
 	}
 
 	return (

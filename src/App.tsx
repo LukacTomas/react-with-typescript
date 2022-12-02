@@ -1,36 +1,23 @@
-import React, {useReducer} from "react";
+import React, { useState} from "react";
 import {Box} from "@mui/material";
 import {Heading} from "./components/Heading";
-import {Doctor, DoctorAction} from "./Types/Types";
+import {Doctor} from "./Types/Types";
 import {DoctorForm} from "./components/DoctorForm";
 
-const doctorReducer = (state: Doctor, action: DoctorAction): Doctor => {
-	switch (action.type) {
-		case "NAME":
-			return {...state, name: action.payload}
-		case "PHONE":
-			return {...state, telephone: action.payload}
-		case "RATING":
-			return {...state, rating: action.payload}
-		default:
-			return state;
-	}
-}
-
-const initialValue: Doctor = {
-	name: "",
-	rating: 0,
-	telephone: ""
-}
-
 function App() {
-	const [doctor, dispatch] = useReducer(doctorReducer, initialValue);
+	const [name, setName] = useState<Doctor["name"]>("");
+	const [phone, setPhone] = useState<Doctor["telephone"]>("");
+	const [rating, setRating] = useState<Doctor["rating"]>(0);
 
 	function addDoctor(event: React.FormEvent) {
 		event.preventDefault();
 		// take all values and submit it
-		console.log("Making new post Request")
-		console.log(doctor)
+		console.log("Making new post Request with usestate")
+		console.log({
+			name,
+			phone,
+			rating
+		})
 	}
 
 	return (
@@ -39,8 +26,12 @@ function App() {
 			<Box className="App" sx={{width: 1024, margin: "0 auto"}}>
 				<form onSubmit={addDoctor}>
 					<DoctorForm
-						doctor={doctor}
-						setState={dispatch}
+						name={name}
+						phone={phone}
+						rating={rating}
+						setName={setName}
+						setPhone={setPhone}
+						setRating={setRating}
 					/>
 				</form>
 			</Box>
