@@ -9,6 +9,7 @@ https://nodejs.org/en/download/
 https://yarnpkg.com/getting-started/install
 3. Potom v priecinku projektu staci zadat `yarn` a tym sa stiahnu vsetky zavislosti, dependencies uvedene v **package.json**
 4. Nasledne spustenie: `yarn dev` co je script definovay tiez v package.json.
+5. Pozrite historiu v gite a checkoutnite sa na skorsie commity, kde je aj dispatch
 
 *Ulohy na zamyslenie:* 
 
