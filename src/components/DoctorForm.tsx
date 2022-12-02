@@ -28,7 +28,7 @@ export function DoctorForm({doctor, setState}: DoctorFormProps) {
 
 	function handleRatingChange(event: React.ChangeEvent<HTMLInputElement>) {
 		const newRating: Doctor["rating"] = parseInt(event.target.value);
-		if (newRating > 5 || newRating < 0) {
+		if (isNaN(newRating) || newRating > 5 || newRating < 0) {
 			return;
 		}
 
